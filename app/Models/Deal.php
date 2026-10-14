@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\DealStage;
+use App\Enums\DealStage;
 use Database\Factories\DealFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

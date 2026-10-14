@@ -1,13 +1,13 @@
 <?php
 
-use App\DealStage;
+use App\Enums\DealStage;
+use App\Enums\TaskStatus;
 use App\Models\Company;
 use App\Models\Contact;
 use App\Models\Deal;
 use App\Models\Note;
 use App\Models\Task;
 use App\Models\User;
-use App\TaskStatus;
 use Database\Seeders\CrmDemoSeeder;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;

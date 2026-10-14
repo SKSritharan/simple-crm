@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\DealStage;
+use App\Enums\DealStage;
 use App\Models\Deal;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

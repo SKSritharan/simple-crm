@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\TaskStatus;
+use App\Enums\TaskStatus;
 use Database\Factories\TaskFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\TaskStatus;
 use App\Models\Task;
-use App\TaskStatus;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /** @extends Factory<Task> */
