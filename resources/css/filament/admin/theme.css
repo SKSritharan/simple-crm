@@ -1,0 +1,162 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../views/filament/**/*';
+@source '../../../views/livewire/**/*';
+
+.crm-chat-launcher {
+    position: fixed;
+    right: 24px;
+    bottom: max(24px, env(safe-area-inset-bottom));
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    height: 56px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 9999px;
+    background: #f59e0b;
+    color: #271500;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 24px rgb(245 158 11 / 14%), 0 8px 24px rgb(0 0 0 / 30%);
+    transition: background-color 150ms, box-shadow 150ms;
+}
+
+.crm-chat-launcher-label {
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-inline-end: 0;
+    transition: max-width 200ms ease, opacity 150ms ease, margin-inline-end 200ms ease;
+}
+
+.crm-chat-launcher:is(:hover, :focus-visible, [aria-expanded="true"]) .crm-chat-launcher-label {
+    max-width: 120px;
+    opacity: 1;
+    margin-inline-end: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .crm-chat-launcher, .crm-chat-launcher-label { transition: none; }
+}
+
+.crm-chat-launcher:hover { background: #fbbf24; }
+.crm-chat-launcher:focus-visible {
+    outline: 2px solid #f59e0b;
+    outline-offset: 4px;
+}
+
+.crm-chat-panel {
+    position: fixed;
+    inset: auto 24px max(96px, calc(env(safe-area-inset-bottom) + 72px)) auto;
+    width: min(22rem, calc(100vw - 32px));
+    height: min(620px, calc(100dvh - 112px));
+    max-height: calc(100dvh - 112px);
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 12px;
+    background: white;
+    color: var(--color-gray-950);
+    box-shadow: 0 24px 64px -16px rgb(0 0 0 / 25%), 0 4px 16px rgb(0 0 0 / 6%);
+    overflow: hidden;
+}
+
+.crm-chat-panel:popover-open { display: flex; flex-direction: column; }
+.crm-chat-panel::backdrop { background: transparent; pointer-events: none; }
+.crm-chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px;
+    border-bottom: 1px solid var(--color-gray-200);
+    flex-shrink: 0;
+}
+.crm-chat-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 20px;
+}
+.crm-chat-body > * + * { margin-top: 16px; }
+.crm-chat-composer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--color-gray-200);
+    flex-shrink: 0;
+}
+.dark .crm-chat-panel { background: #18181b; color: #fafafa; border-color: #3f3f46; }
+.dark :is(.crm-chat-header, .crm-chat-composer) { border-color: #3f3f46; }
+
+@media (max-width: 480px) {
+    .crm-chat-launcher { right: 16px; bottom: max(16px, env(safe-area-inset-bottom)); }
+    .crm-chat-panel {
+        right: 16px;
+        bottom: max(88px, calc(env(safe-area-inset-bottom) + 72px));
+        height: min(620px, calc(100dvh - 104px));
+        max-height: calc(100dvh - 104px);
+    }
+}
+
+.crm-chat-markdown {
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.crm-chat-markdown > * + * {
+    margin-top: 0.75rem;
+}
+
+.crm-chat-markdown :is(h1, h2, h3, h4, h5, h6, strong, th) {
+    font-weight: 600;
+}
+
+.crm-chat-markdown :is(h1, h2, h3) {
+    font-size: 1.1em;
+}
+
+.crm-chat-markdown :is(ul, ol) {
+    padding-inline-start: 1.5rem;
+}
+
+.crm-chat-markdown ul { list-style-type: disc; }
+.crm-chat-markdown ol { list-style-type: decimal; }
+.crm-chat-markdown li + li { margin-top: 0.25rem; }
+.crm-chat-markdown a { text-decoration: underline; }
+
+.crm-chat-markdown table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: 0.875em;
+}
+
+.crm-chat-markdown :is(th, td) {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgb(128 128 128 / 30%);
+    text-align: start;
+    min-width: 5rem;
+}
+
+.crm-chat-markdown pre {
+    overflow-x: auto;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background: rgb(128 128 128 / 10%);
+    white-space: pre;
+}
+
+.crm-chat-markdown code {
+    font-size: 0.875em;
+}
+
+.crm-chat-markdown blockquote {
+    border-inline-start: 3px solid rgb(128 128 128 / 40%);
+    padding-inline-start: 0.75rem;
+}
