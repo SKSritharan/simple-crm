@@ -32,6 +32,7 @@ class CrmServer extends Server
     ];
 
     protected array $resources = [
+        Resources\CrmExplorerApp::class,
         Resources\CrmGuide::class,
         Resources\CrmOverview::class,
         Resources\CrmRecord::class,

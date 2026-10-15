@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\CarbonImmutable;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -15,8 +16,25 @@ use Illuminate\Notifications\Notifiable;
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
+    public const MONTHLY_AI_CREDITS = 30;
+
+    public const AI_CREDIT_TIMEZONE = 'Asia/Colombo';
+
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
+
+    public static function currentAiCreditMonth(): string
+    {
+        return CarbonImmutable::now(self::AI_CREDIT_TIMEZONE)->format('Y-m');
+    }
+
+    public function remainingAiCredits(?string $month = null): int
+    {
+        $used = $this->ai_credit_month === ($month ?? self::currentAiCreditMonth())
+            ? (int) $this->ai_credits_used : 0;
+
+        return max(0, self::MONTHLY_AI_CREDITS - $used);
+    }
 
     public function ownedCompanies(): HasMany
     {
@@ -53,6 +71,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'ai_credits_used' => 'integer',
         ];
     }
 }
