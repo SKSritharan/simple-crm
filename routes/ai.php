@@ -1,5 +1,6 @@
 <?php
 
+use App\Mcp\Servers\CrmServer;
 use Laravel\Mcp\Facades\Mcp;
 
-// Mcp::web('/mcp/demo', \App\Mcp\Servers\PublicServer::class);
+Mcp::local('crm', CrmServer::class);
